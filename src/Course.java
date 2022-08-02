@@ -2,10 +2,10 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Course {
-    private String name;
-    private int months;
-    private int fees;
-    private LocalDate startDate;
+    private final String name;
+    private final int months;
+    private final int fees;
+    private final LocalDate startDate;
 
     public Course(String name, int months, int fees, LocalDate startDate) {
         this.name = name;

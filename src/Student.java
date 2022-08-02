@@ -2,10 +2,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class Student {
-    private String name;
-    private List<Course> courses;
-    private int age;
-    private List<String> basicKnowledges;
+    private final String name;
+    private final List<Course> courses;
+    private final int age;
+    private final List<String> basicKnowledges;
 
     public Student(String name, List<Course> courses, int age, List<String> basicKnowledges) {
         this.name = name;
