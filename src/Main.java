@@ -13,6 +13,6 @@ public class Main {
                 new Student("Kyi Phyar", List.of(c1,c3), 26, List.of("CSS", "DataBase")),
                 new Student("Zwe", List.of(c2), 20, List.of("HTML", "CSS", "Database")));
         System.out.println("===すべての学生を表示する===");
-        students.forEach(s -> System.out.println("生徒の名前： %s、コース：　%sを取っています。".formatted(s.getName(), s.getCourses().stream().map(Course::getName).collect(Collectors.joining("/")))));
+        students.forEach(s -> System.out.println("生徒の名前： %s　コース： %sを取っています。".formatted(s.getName(), s.getCourses().stream().map(Course::getName).collect(Collectors.joining("/")))));
     }
 }
