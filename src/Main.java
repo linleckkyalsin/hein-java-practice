@@ -40,8 +40,8 @@ public class Main {
         students.stream().filter(student -> student.getBasicKnowledges().stream().anyMatch("HTML"::equals)).forEach(student -> System.out.printf("%sはHTMLを勉強したことあります。\n", student.getName()));
 
         System.out.println("===生徒全員が30歳未満かチェックして表示する。===");
-        if (students.stream().allMatch(student -> student.getAge() < 30)){
-            students.forEach(student -> System.out.printf(""));
+        if (students.stream().allMatch(student -> student.getAge() < 30)) {
+            students.forEach(student -> System.out.printf("生徒の名前：%s", student.getName()));
         }
         else {
             System.out.println("30歳以上の生徒がいます！");
@@ -51,10 +51,10 @@ public class Main {
         checkStudentExist("hein thant", students);
 
         System.out.println("===Johnという名前の生徒がいるかチェックする。===");
-        checkStudentExist("Jhon", students);
+        checkStudentExist("John", students);
     }
-    private static void checkStudentExist(String searchName, List<Student> students){
 
+    private static void checkStudentExist(String searchName, List<Student> students) {
         List<Student> filteredStudents = students.stream().filter(student -> student.getName().toLowerCase().contains(searchName.toLowerCase())).collect(Collectors.toList());
         if (filteredStudents.isEmpty()){
             System.out.println("その名前で授業を取っている生徒はいません。");
