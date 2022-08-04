@@ -32,5 +32,13 @@ public class Main {
         System.out.println("===コースの開始日と終了日を表示する===");
         courses.forEach(course -> System.out.printf("%s コースの開始日は %sで、終了日は %sです。\n", course.getName(), course.getStartDate(), course.getStartDate().plusMonths(course.getMonths())));
 
+        System.out.println("===Spring Frameworkコースを取っている生徒を表示する===");
+        students.stream().filter(student -> student.getCourses().stream().map(Course::getName).collect(Collectors.toList()).stream().anyMatch("Spring Framework"::equals)).forEach(student -> System.out.printf("生徒の名前： %s 年齢： %s歳\n", student.getName(), student.getAge()));
+
+        System.out.println("===生徒の基礎を表示する===");
+        students.stream().forEach(student -> System.out.printf("%sは%sを勉強したことあります。\n", student.getName(), student.getBasicKnowledges().stream().collect(Collectors.joining("、"))));
+
+        System.out.println("===HTMLを勉強した生徒を表示する。===");
+        students.stream().filter(student -> student.getBasicKnowledges().stream().anyMatch("HTML"::equals)).forEach(student -> System.out.printf("%sはHTMLを勉強したことあります。\n", student.getName()));
     }
 }
