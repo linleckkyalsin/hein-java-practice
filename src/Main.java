@@ -40,7 +40,7 @@ public class Main {
         students.stream().filter(student -> student.getBasicKnowledges().stream().anyMatch("HTML"::equals)).forEach(student -> System.out.printf("%s がHTMLを勉強したことあります。\n", student.getName()));
 
         System.out.println("===生徒全員が30歳未満かチェックして表示する。===");
-        if (students.stream().allMatch(student -> student.getAge()<30)){
+        if (students.stream().allMatch(student -> student.getAge() < 30)){
             students.forEach(student -> System.out.printf(""));
         }
         else {
@@ -48,21 +48,19 @@ public class Main {
         }
 
         System.out.println("===Hein Thantという名前の生徒がいるかチェックする。===");
-        String searchHeinThant = "hein thant";
-        checkStudentExist(students.stream().filter(student -> student.getName().toLowerCase().contains(searchHeinThant)).collect(Collectors.toList()));
+        checkStudentExist("hein thant", students);
 
         System.out.println("===Johnという名前の生徒がいるかチェックする。===");
-        String searchJhon = "jhon";
-        checkStudentExist(students.stream().filter(student -> student.getName().toLowerCase().contains(searchJhon)).collect(Collectors.toList()));
-
-
+        checkStudentExist("Jhon", students);
     }
-    private static void checkStudentExist(List<Student> students){
-        if (students.isEmpty()){
+    private static void checkStudentExist(String searchName, List<Student> students){
+
+        List<Student> filteredStudents = students.stream().filter(student -> student.getName().toLowerCase().contains(searchName.toLowerCase())).collect(Collectors.toList());
+        if (filteredStudents.isEmpty()){
             System.out.println("その名前で授業を取っている生徒はいません。");
         }
         else {
-            students.forEach(student -> System.out.printf("%sは　%s コースを取っています。\n",student.getName(),student.getCourses().stream().map(Course::getName).collect(Collectors.joining("/"))));
+            filteredStudents.forEach(student -> System.out.printf("%sは%s コースを取っています。\n", student.getName(), student.getCourses().stream().map(Course::getName).collect(Collectors.joining("/"))));
         }
     }
 
