@@ -1,5 +1,9 @@
+import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -12,7 +16,21 @@ public class Main {
                 new Student("Thidar", List.of(c3), 30, List.of("CSS")),
                 new Student("Kyi Phyar", List.of(c1,c3), 26, List.of("CSS", "DataBase")),
                 new Student("Zwe", List.of(c2), 20, List.of("HTML", "CSS", "Database")));
+        Set<Course> courses = new HashSet<Course>();
+        students.forEach(student -> student.getCourses().stream().forEach(c -> courses.add(c)));
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+
         System.out.println("===すべての学生を表示する===");
         students.forEach(s -> System.out.println("生徒の名前： %s　コース： %s".formatted(s.getName(), s.getCourses().stream().map(Course::getName).collect(Collectors.joining("/")))));
+
+        System.out.println("===すべてのコースを表示する===");
+        courses.forEach(course -> System.out.printf("コースの名前: %s 期間: %dヶ月間\n", course.getName(), course.getMonths()));
+
+        System.out.println("===料金250,000kyats以下のコースを表示する===");
+        courses.stream().filter(course -> course.getFees() <= 250000).collect(Collectors.toList()).forEach(c -> System.out.printf("%s コースの料金は %sチャットです。\n", c.getName(), decimalFormat.format(c.getFees())));
+        
+        System.out.println("===コースの開始日と終了日を表示する===");
+        courses.forEach(course -> System.out.printf("%s コースの開始日は %sで、終了日は %sです。\n", course.getName(), course.getStartDate(), course.getStartDate().plusMonths(course.getMonths())));
+
     }
 }
