@@ -39,6 +39,6 @@ public class Main {
         students.stream().forEach(student -> System.out.printf("%sが %sを勉強したことあります。\n", student.getName(), student.getBasicKnowledges().stream().collect(Collectors.joining("、"))));
 
         System.out.println("===HTMLを勉強した生徒を表示する。===");
-        students.stream().filter(student -> student.getBasicKnowledges().stream().anyMatch("HTML"::equals)).forEach(student -> System.out.printf("%s はHTMLを勉強したことあります。\n", student.getName()));
+        students.stream().filter(student -> student.getBasicKnowledges().stream().anyMatch("HTML"::equals)).forEach(student -> System.out.printf("%sはHTMLを勉強したことあります。\n", student.getName()));
     }
 }
