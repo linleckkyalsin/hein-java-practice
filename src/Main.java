@@ -57,7 +57,7 @@ public class Main {
             studentHein_thant .forEach(h -> System.out.printf("%sは %s コースを取っています。\n", h.getName(), h.getCourses().stream().map(Course::getName).collect(Collectors.joining("/"))));
         }
 
-        System.out.println("===Johnが取っているコースを表示する。===");
+        System.out.println("===Johnという名前の生徒がいるかチェックする。===");
         String searchJhon = "jhon";
         List<Student> studentJhon = students.stream().filter(student -> student.getName().toLowerCase().contains(searchJhon)).collect(Collectors.toList());
         if (studentJhon .isEmpty()){
