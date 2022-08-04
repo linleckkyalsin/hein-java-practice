@@ -41,7 +41,7 @@ public class Main {
 
         System.out.println("===生徒全員が30歳未満かチェックして表示する。===");
         if (students.stream().allMatch(student -> student.getAge()<30)){
-            System.out.println("生徒全員が30歳未満です！");
+            students.forEach(student -> System.out.printf(""));
         }
         else {
             System.out.println("30歳以上の生徒がいます！");
@@ -49,26 +49,21 @@ public class Main {
 
         System.out.println("===Hein Thantという名前の生徒がいるかチェックする。===");
         String searchHeinThant = "hein thant";
-        List<Student> studentHein_thant = students.stream().filter(student -> student.getName().toLowerCase().contains(searchHeinThant)).collect(Collectors.toList());
-        if (studentHein_thant .isEmpty()){
-            System.out.println("その名前で授業を取っている生徒はいません。");
-        }
-        else {
-            studentHein_thant .forEach(h -> System.out.printf("%sは %s コースを取っています。\n", h.getName(), h.getCourses().stream().map(Course::getName).collect(Collectors.joining("/"))));
-        }
+        checkStudentExist(students.stream().filter(student -> student.getName().toLowerCase().contains(searchHeinThant)).collect(Collectors.toList()));
 
         System.out.println("===Johnという名前の生徒がいるかチェックする。===");
         String searchJhon = "jhon";
-        List<Student> studentJhon = students.stream().filter(student -> student.getName().toLowerCase().contains(searchJhon)).collect(Collectors.toList());
-        if (studentJhon .isEmpty()){
-            System.out.println("その名前で授業を取っている生徒はいません。");
-        }
-        else {
-            studentJhon .forEach(j -> System.out.printf("%sは %s コースを取っています。\n", j.getName(), j.getCourses().stream().map(Course::getName).collect(Collectors.joining("/"))));
-        }
+        checkStudentExist(students.stream().filter(student -> student.getName().toLowerCase().contains(searchJhon)).collect(Collectors.toList()));
 
 
     }
-
+    private static void checkStudentExist(List<Student> students){
+        if (students.isEmpty()){
+            System.out.println("その名前で授業を取っている生徒はいません。");
+        }
+        else {
+            students.forEach(student -> System.out.printf("%sは　%s コースを取っています。\n",student.getName(),student.getCourses().stream().map(Course::getName).collect(Collectors.joining("/"))));
+        }
+    }
 
 }
