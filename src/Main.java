@@ -52,10 +52,9 @@ public class Main {
         System.out.println("===Johnという名前の生徒がいるかチェックする。===");
         checkStudentExist("John", students);
     }
-
     private static void checkStudentExist(String searchName, List<Student> students) {
         List<Student> filteredStudents = students.stream().filter(student -> student.getName().toLowerCase().contains(searchName.toLowerCase())).collect(Collectors.toList());
-        if (filteredStudents.isEmpty()){
+        if (filteredStudents.isEmpty()) {
             System.out.println("その名前で授業を取っている生徒はいません。");
         }
         else {
