@@ -53,7 +53,7 @@ public class Main {
         checkStudentExist("John", students);
     }
     private static void checkStudentExist(String searchName, List<Student> students) {
-        List<Student> filteredStudents = students.stream().filter(student -> student.getName().toLowerCase().contains(searchName.toLowerCase())).collect(Collectors.toList());
+        List<Student> filteredStudents = students.stream().filter(student -> student.getName().equalsIgnoreCase(searchName)).collect(Collectors.toList());
         if (filteredStudents.isEmpty()) {
             System.out.println("その名前で授業を取っている生徒はいません。");
         }
