@@ -41,7 +41,7 @@ public class Main {
 
         System.out.println("===生徒全員が30歳未満かチェックして表示する。===");
         if (students.stream().allMatch(student -> student.getAge() < 30)) {
-            students.forEach(student -> System.out.printf("生徒の名前：%s", student.getName()));
+            students.forEach(student -> System.out.printf("生徒の名前： %s", student.getName()));
         }
         else {
             System.out.println("30歳以上の生徒がいます！");
