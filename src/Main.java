@@ -1,9 +1,6 @@
 import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -40,5 +37,29 @@ public class Main {
 
         System.out.println("===HTMLを勉強した生徒を表示する。===");
         students.stream().filter(student -> student.getBasicKnowledges().stream().anyMatch("HTML"::equals)).forEach(student -> System.out.printf("%sはHTMLを勉強したことあります。\n", student.getName()));
+
+        System.out.println("===生徒全員が30歳未満かチェックして表示する。===");
+        if (students.stream().allMatch(student -> student.getAge() < 30)) {
+            students.forEach(student -> System.out.printf("生徒の名前： %s", student.getName()));
+        }
+        else {
+            System.out.println("30歳以上の生徒がいます！");
+        }
+
+        System.out.println("===Hein Thantという名前の生徒がいるかチェックする。===");
+        checkStudentExist("hein thant", students);
+
+        System.out.println("===Johnという名前の生徒がいるかチェックする。===");
+        checkStudentExist("John", students);
     }
+    private static void checkStudentExist(String searchName, List<Student> students) {
+        List<Student> filteredStudents = students.stream().filter(student -> student.getName().equalsIgnoreCase(searchName)).collect(Collectors.toList());
+        if (filteredStudents.isEmpty()) {
+            System.out.println("その名前で授業を取っている生徒はいません。");
+        }
+        else {
+            filteredStudents.forEach(student -> System.out.printf("%sは%s コースを取っています。\n", student.getName(), student.getCourses().stream().map(Course::getName).collect(Collectors.joining("/"))));
+        }
+    }
+
 }
